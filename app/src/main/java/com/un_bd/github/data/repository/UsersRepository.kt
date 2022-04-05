@@ -17,7 +17,7 @@ class UsersRepository(private val gitHubApiService: GitHubApiService) {
   }
 
   fun getUsers2(since: Int = 0): Flow<PagingData<UserModelX>> {
-    return Pager(config = PagingConfig(pageSize = 20)) {
+    return Pager(config = PagingConfig(pageSize = 30)) {
       UsersPagingSource(gitHubApiService, since)
     }.flow
   }
