@@ -150,7 +150,6 @@ fun NavigationScreen(width: Int) {
           )
         ) + fadeOut(animationSpec = tween(300))
       }) {
-      //(usersViewModel = viewModel(factory = UsersViewModel.provideFactory()))
       UsersScreen(usersViewModel = viewModel(factory = UsersViewModel.provideFactory())) {
         navController.navigate("${Screen.ReposScreen.route}/$it") {
           popUpTo(Screen.UsersScreen.route)
