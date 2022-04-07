@@ -1,23 +1,26 @@
 # Jetpack Compose GitHub Samples
 
-${toc}
-
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
+![Compose Version](https://img.shields.io/badge/Compose-1.1.1-brightgreen)
 
-This is [Jetpack Compose](https://developer.android.com/jetpack) created GitHub App simple.
-
-![image](https://user-images.githubusercontent.com/5492542/47603494-28e90000-da1f-11e8-9079-30646e551e7a.gif =400x200)
+This is [Jetpack Compose](https://developer.android.com/jetpack) created GitHub App simple, use [MVI](https://developer.android.com/jetpack/compose/architecture) architecture.
 
 
-## Libraries Used
+<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/user_screen.png" width=190/>
+<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/loading_screen.png" width=190/>
+<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/repos_screen.png" width=190/>
+<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/error_screen.png" width=190/>
+
+
+## Core Libraries Used
 - [Jetpack Compose](https://developer.android.com/jetpack)
-- ViewModel
-- Paging3
-- Navigation
-- coil
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+- [Navigation](https://developer.android.com/jetpack/compose/navigation)
+- [coil](https://coil-kt.github.io/coil/compose/)
 
 ## License
-    Copyright (c) 2016-present. Drakeet Xu
+    Copyright (c) 2022 Barry Liu
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -30,5 +33,6 @@ This is [Jetpack Compose](https://developer.android.com/jetpack) created GitHub 
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-![maven-central](https://img.shields.io/maven-central/v/com.drakeet.multitype/multitype.svg)
+
+[comment]: <> (![maven-central]&#40;https://img.shields.io/maven-central/v/com.drakeet.multitype/multitype.svg&#41;)
 
