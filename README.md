@@ -6,7 +6,7 @@
 This is [Jetpack Compose](https://developer.android.com/jetpack) created GitHub App simple, use [MVI](https://developer.android.com/jetpack/compose/architecture) architecture.
 
 
-<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/user_screen.png" width=216/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/loading_screen.png" width=216/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/repos_screen.png" width=216/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/error_screen.png" width=216/>
+<img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/user_screen.png" width=190/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/loading_screen.png" width=190/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/repos_screen.png" width=190/><img src="https://raw.githubusercontent.com/BarryLius/Git/master/screenshots/error_screen.png" width=190/>
 
 
 ## Core Libraries Used
