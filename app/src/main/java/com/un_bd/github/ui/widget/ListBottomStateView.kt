@@ -53,16 +53,6 @@ fun ListBottomLoading() {
 @Preview(showBackground = true)
 @Composable
 fun ListBottomError(onRetryClick: () -> Unit = { }) {
-
-  // val infiniteTransition = rememberInfiniteTransition()
-  // val size by infiniteTransition.animateFloat(
-  //   initialValue = 0f,
-  //   targetValue = 360f,
-  //   animationSpec = infiniteRepeatable(
-  //     animation = tween(1000)
-  //   )
-  // )
-
   var enable by remember { mutableStateOf(true) }
   val animFloat by animateFloatAsState(
     targetValue = if (enable) 360f else 0f,
