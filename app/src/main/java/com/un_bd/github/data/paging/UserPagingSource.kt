@@ -3,10 +3,10 @@ package com.un_bd.github.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.un_bd.github.model.UserModelX
-import com.un_bd.github.net.GitHubApiService
+import com.un_bd.github.net.GitHubService
 
 class UsersPagingSource(
-  private val gitHubApiService: GitHubApiService,
+  private val gitHubService: GitHubService,
   private val pageNum: Int = 0
 ) : PagingSource<Int, UserModelX>() {
   override fun getRefreshKey(state: PagingState<Int, UserModelX>): Int? {
@@ -16,7 +16,7 @@ class UsersPagingSource(
   override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserModelX> {
     return try {
       val currentPage = params.key ?: pageNum
-      val users = gitHubApiService.getUsers(currentPage)
+      val users = gitHubService.getUsers(currentPage)
 
       LoadResult.Page(
         data = users,

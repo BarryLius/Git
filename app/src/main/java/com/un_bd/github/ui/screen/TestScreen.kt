@@ -1,13 +1,12 @@
 package com.un_bd.github.ui.screen
 
 import android.annotation.SuppressLint
+import android.widget.ToggleButton
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
@@ -58,3 +57,20 @@ fun TestScreen() {
 }
 
 private fun Offset.toIntOffset() = IntOffset(x.roundToInt(), y.roundToInt())
+
+
+@Composable
+fun DebugTip() {
+  Row(
+    horizontalArrangement = Arrangement.End
+  ) {
+    val name = object : Any() {}.javaClass.enclosingMethod?.name
+    Text(
+      text = name.toString(),
+      color = Color.White,
+      modifier = Modifier
+        .background(Color.Red.copy(alpha = 0.68f))
+        .padding(top = 2.dp, bottom = 2.dp, start = 8.dp, end = 8.dp)
+    )
+  }
+}

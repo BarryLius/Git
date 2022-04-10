@@ -1,6 +1,5 @@
 package com.un_bd.github.ui.screen
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
@@ -28,11 +28,11 @@ import com.un_bd.github.viewmodel.UsersViewModel
 
 @Composable
 fun UsersScreen(
-  usersViewModel: UsersViewModel,
+  usersViewModel: UsersViewModel = hiltViewModel(),
   onItemClick: (user: String) -> Unit = { }
 ) {
   val users = usersViewModel.uiState.list.collectAsLazyPagingItems()
-  Log.e("users", ">>>${users.itemCount}")
+  // Log.e("users", ">>>${users.itemCount}")
 
   Column {
     TopAppBar(title = { Text(text = "GitHub") })

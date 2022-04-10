@@ -12,17 +12,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.un_bd.github.ui.screen.ReposScreen
 import com.un_bd.github.ui.screen.UsersScreen
 import com.un_bd.github.ui.theme.GitHubTheme
-import com.un_bd.github.viewmodel.ReposViewModel
-import com.un_bd.github.viewmodel.UsersViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -42,75 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavigationScreen(width: Int) {
   val navController = rememberAnimatedNavController()
-
-  /*AnimatedNavHost(navController = navController, startDestination = Screen.UsersScreen.route) {
-    composable(route = Screen.UsersScreen.route,
-      enterTransition = {
-        slideIntoContainer(
-          AnimatedContentScope.SlideDirection.Left,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      exitTransition = {
-        slideOutOfContainer(
-          AnimatedContentScope.SlideDirection.Left,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      popEnterTransition = {
-        slideIntoContainer(
-          AnimatedContentScope.SlideDirection.Right,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      popExitTransition = {
-        slideOutOfContainer(
-          AnimatedContentScope.SlideDirection.Right,
-          animationSpec = tween(durationMillis)
-        )
-      }) {
-      UsersScreen(usersViewModel = viewModel(factory = UsersViewModel.provideFactory())) {
-        navController.navigate("${Screen.ReposScreen.route}/$it") {
-          popUpTo(Screen.UsersScreen.route)
-        }
-      }
-    }
-
-    composable(route = "${Screen.ReposScreen.route}/{user}",
-      enterTransition = {
-        slideIntoContainer(
-          AnimatedContentScope.SlideDirection.Left,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      exitTransition = {
-        slideOutOfContainer(
-          AnimatedContentScope.SlideDirection.Left,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      popEnterTransition = {
-        slideIntoContainer(
-          AnimatedContentScope.SlideDirection.Right,
-          animationSpec = tween(durationMillis)
-        )
-      },
-      popExitTransition = {
-        slideOutOfContainer(
-          AnimatedContentScope.SlideDirection.Right,
-          animationSpec = tween(durationMillis)
-        )
-      }
-    ) {
-      it.arguments?.getString("user")?.let { user ->
-        ReposScreen(
-          reposViewModel = viewModel(factory = ReposViewModel.provideFactory(user = user)), user
-        ) {
-          navController.popBackStack()
-        }
-      }
-    }
-  }*/
 
   AnimatedNavHost(navController = navController, startDestination = Screen.UsersScreen.route) {
     composable(route = Screen.UsersScreen.route,
@@ -150,7 +79,7 @@ fun NavigationScreen(width: Int) {
           )
         ) + fadeOut(animationSpec = tween(300))
       }) {
-      UsersScreen(usersViewModel = viewModel(factory = UsersViewModel.provideFactory())) {
+      UsersScreen {
         navController.navigate("${Screen.ReposScreen.route}/$it") {
           popUpTo(Screen.UsersScreen.route)
         }
@@ -184,15 +113,12 @@ fun NavigationScreen(width: Int) {
       }
     ) {
       it.arguments?.getString("user")?.let { user ->
-        ReposScreen(
-          reposViewModel = viewModel(factory = ReposViewModel.provideFactory(user = user)), user
-        ) {
+        ReposScreen(user = user) {
           navController.popBackStack()
         }
       }
     }
   }
-
 }
 
 const val durationMillis: Int = 300

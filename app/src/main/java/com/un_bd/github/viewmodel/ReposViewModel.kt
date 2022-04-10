@@ -4,32 +4,34 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.un_bd.github.data.repository.ReposRepository
 import com.un_bd.github.model.ReposModel
-import com.un_bd.github.net.ApiClient
 import com.un_bd.github.ui.widget.PageState
 import com.un_bd.github.ui.widget.PageStateData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ReposViewModel(
-  private val reposRepository: ReposRepository,
-  private val user: String
+@HiltViewModel
+class ReposViewModel @Inject constructor(
+  private val reposRepository: ReposRepository
 ) : ViewModel() {
+  private var user: String = ""
+
   var uiState by mutableStateOf(ReposUiState())
     private set
-
-  init {
-    getRepose()
-  }
 
   fun getHandleAction(uiAction: ReposUiAction) {
     when (uiAction) {
       ReposUiAction.Retry -> getRepose()
+      is ReposUiAction.Request -> {
+        user = uiAction.user
+        getRepose()
+      }
     }
   }
 
@@ -60,19 +62,6 @@ class ReposViewModel(
         }
     }
   }
-
-  @Suppress("UNCHECKED_CAST")
-  companion object {
-    fun provideFactory(
-      reposRepository: ReposRepository = ReposRepository(ApiClient.gitHubApiService),
-      user: String
-    ): ViewModelProvider.Factory =
-      object : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-          return ReposViewModel(reposRepository, user) as T
-        }
-      }
-  }
 }
 
 data class ReposUiState(
@@ -83,4 +72,5 @@ data class ReposUiState(
 
 sealed class ReposUiAction {
   object Retry : ReposUiAction()
+  data class Request(var user: String) : ReposUiAction()
 }
