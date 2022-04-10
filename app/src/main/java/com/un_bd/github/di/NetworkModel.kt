@@ -14,6 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModel {
+
   @Singleton
   @Provides
   fun provideOkHttpClient(): OkHttpClient {
