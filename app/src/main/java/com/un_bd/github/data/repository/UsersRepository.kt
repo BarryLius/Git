@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.un_bd.github.data.paging.UsersPagingSource
 import com.un_bd.github.model.UserModelX
-import com.un_bd.github.net.GitHubService
+import com.un_bd.github.api.GitHubService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

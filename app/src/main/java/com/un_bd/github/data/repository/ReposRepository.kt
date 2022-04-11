@@ -1,7 +1,7 @@
 package com.un_bd.github.data.repository
 
 import com.un_bd.github.model.ReposModel
-import com.un_bd.github.net.GitHubService
+import com.un_bd.github.api.GitHubService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

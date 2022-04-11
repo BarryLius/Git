@@ -3,7 +3,7 @@ package com.un_bd.github.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.un_bd.github.model.UserModelX
-import com.un_bd.github.net.GitHubService
+import com.un_bd.github.api.GitHubService
 
 class UsersPagingSource(
   private val gitHubService: GitHubService,

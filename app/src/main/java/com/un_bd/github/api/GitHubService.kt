@@ -1,4 +1,4 @@
-package com.un_bd.github.net
+package com.un_bd.github.api
 
 import com.un_bd.github.model.ReposModel
 import com.un_bd.github.model.UserModelX
