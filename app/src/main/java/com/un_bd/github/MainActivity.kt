@@ -3,8 +3,8 @@ package com.un_bd.github
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.*
-import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
@@ -44,41 +44,30 @@ fun NavigationScreen(width: Int) {
   AnimatedNavHost(navController = navController, startDestination = Screen.UsersScreen.route) {
     composable(route = Screen.UsersScreen.route,
       enterTransition = {
-        slideInHorizontally(
-          initialOffsetX = { width },
-          animationSpec = tween(
-            durationMillis = 300,
-            easing = FastOutSlowInEasing
-          )
-        ) + fadeIn(animationSpec = tween(300))
+        slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(durationMillis)
+        )
       },
       exitTransition = {
-        slideOutHorizontally(
-          targetOffsetX = { -width },
-          animationSpec = tween(
-            durationMillis = 300,
-            easing = FastOutSlowInEasing
-          )
-        ) + fadeOut(animationSpec = tween(300))
+        slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(durationMillis)
+        )
       },
       popEnterTransition = {
-        slideInHorizontally(
-          initialOffsetX = { -width },
-          animationSpec = tween(
-            durationMillis = 300,
-            easing = FastOutSlowInEasing
-          )
-        ) + fadeIn(animationSpec = tween(300))
+        slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(durationMillis)
+        )
       },
       popExitTransition = {
-        slideOutHorizontally(
-          targetOffsetX = { width },
-          animationSpec = tween(
-            durationMillis = 300,
-            easing = FastOutSlowInEasing
-          )
-        ) + fadeOut(animationSpec = tween(300))
-      }) {
+        slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(durationMillis)
+        )
+      }
+    ) {
       UsersScreen {
         navController.navigate("${Screen.ReposScreen.route}/$it") {
           popUpTo(Screen.UsersScreen.route)
@@ -111,6 +100,7 @@ fun NavigationScreen(width: Int) {
           animationSpec = tween(durationMillis)
         )
       }
+
     ) {
       it.arguments?.getString("user")?.let { user ->
         ReposScreen(user = user) {
@@ -126,16 +116,4 @@ const val durationMillis: Int = 300
 sealed class Screen(val route: String) {
   object UsersScreen : Screen("UsersScreen")
   object ReposScreen : Screen("ReposScreen")
-
 }
-
-
-
-
-
-
-
-
-
-
-

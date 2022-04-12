@@ -1,6 +1,7 @@
 package com.un_bd.github.ui.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.ToggleButton
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.VectorConverter
@@ -74,3 +75,39 @@ fun DebugTip() {
     )
   }
 }
+// enterTransition = {
+//   slideInHorizontally(
+//     initialOffsetX = { width },
+//     animationSpec = tween(
+//       durationMillis = durationMillis,
+//       easing = FastOutSlowInEasing
+//     )
+//   ) + fadeIn(animationSpec = tween(durationMillis))
+// },
+// exitTransition = {
+//   slideOutHorizontally(
+//     targetOffsetX = { -width },
+//     animationSpec = tween(
+//       durationMillis = durationMillis,
+//       easing = FastOutSlowInEasing
+//     )
+//   ) + fadeOut(animationSpec = tween(durationMillis))
+// },
+// popEnterTransition = {
+//   slideInHorizontally(
+//     initialOffsetX = { -width },
+//     animationSpec = tween(
+//       durationMillis = durationMillis,
+//       easing = FastOutSlowInEasing
+//     )
+//   ) + fadeIn(animationSpec = tween(durationMillis))
+// },
+// popExitTransition = {
+//   slideOutHorizontally(
+//     targetOffsetX = { width },
+//     animationSpec = tween(
+//       durationMillis = durationMillis,
+//       easing = FastOutSlowInEasing
+//     )
+//   ) + fadeOut(animationSpec = tween(durationMillis))
+// }

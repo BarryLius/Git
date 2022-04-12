@@ -19,9 +19,9 @@ object NetworkModel {
   @Singleton
   @Provides
   fun provideLoggerInterceptor(): HttpLoggingInterceptor {
-    val interceptor = HttpLoggingInterceptor()
-    interceptor.level = HttpLoggingInterceptor.Level.BODY
-    return interceptor
+    return HttpLoggingInterceptor().apply {
+      level = HttpLoggingInterceptor.Level.BODY
+    }
   }
 
   @Singleton

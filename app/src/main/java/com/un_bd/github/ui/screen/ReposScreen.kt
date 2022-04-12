@@ -39,7 +39,8 @@ fun ReposScreen(
         IconButton(onClick = { onBack() }) {
           Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
         }
-      })
+      }
+    )
     StateLayout(pageStateData = reposViewModel.uiState.pageState,
       loading = { PageLoading() },
       empty = { PageEmpty() },
