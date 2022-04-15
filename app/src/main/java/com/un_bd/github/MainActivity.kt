@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
       GitHubTheme(darkTheme = false) {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
           BoxWithConstraints {
-            NavigationScreen(constraints.maxWidth / 2)
+            NavigationScreen()
           }
         }
       }
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun NavigationScreen(width: Int) {
+fun NavigationScreen() {
   val navController = rememberAnimatedNavController()
 
   AnimatedNavHost(navController = navController, startDestination = Screen.UsersScreen.route) {
@@ -102,8 +102,8 @@ fun NavigationScreen(width: Int) {
       }
 
     ) {
-      it.arguments?.getString("user")?.let { user ->
-        ReposScreen(user = user) {
+      it.arguments?.getString("user")?.let {
+        ReposScreen {
           navController.popBackStack()
         }
       }

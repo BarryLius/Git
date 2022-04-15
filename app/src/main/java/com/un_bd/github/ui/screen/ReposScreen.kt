@@ -9,7 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,17 +23,10 @@ import com.un_bd.github.viewmodel.ReposViewModel
 @Composable
 fun ReposScreen(
   reposViewModel: ReposViewModel = hiltViewModel(),
-  user: String,
   onBack: () -> Unit = { }
 ) {
-  DisposableEffect(Unit) {
-    reposViewModel.getHandleAction(ReposUiAction.Request(user))
-    onDispose {
-    }
-  }
-
   Column {
-    TopAppBar(title = { Text(text = user) },
+    TopAppBar(title = { Text(text = reposViewModel.uiState.user) },
       navigationIcon = {
         IconButton(onClick = { onBack() }) {
           Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)

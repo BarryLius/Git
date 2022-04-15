@@ -3,6 +3,7 @@ package com.un_bd.github.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.un_bd.github.data.repository.ReposRepository
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ReposViewModel @Inject constructor(
+  private val savedStateHandle: SavedStateHandle,
   private val reposRepository: ReposRepository
 ) : ViewModel() {
   private var user: String = ""
@@ -25,13 +27,15 @@ class ReposViewModel @Inject constructor(
   var uiState by mutableStateOf(ReposUiState())
     private set
 
+  init {
+    user = savedStateHandle.get<String>("user") ?: ""
+    uiState = uiState.copy(user = user)
+    getRepose()
+  }
+
   fun getHandleAction(uiAction: ReposUiAction) {
     when (uiAction) {
       ReposUiAction.Retry -> getRepose()
-      is ReposUiAction.Request -> {
-        user = uiAction.user
-        getRepose()
-      }
     }
   }
 
@@ -65,12 +69,12 @@ class ReposViewModel @Inject constructor(
 }
 
 data class ReposUiState(
-  val pageState: PageStateData = PageStateData(PageState.CONTENT),
+  val user: String = "",
+  val pageState: PageStateData = PageStateData(PageState.LOADING),
   val list: List<ReposModel> = emptyList(),
   val error: Throwable? = null
 )
 
 sealed class ReposUiAction {
   object Retry : ReposUiAction()
-  data class Request(var user: String) : ReposUiAction()
 }
