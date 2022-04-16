@@ -22,12 +22,11 @@ import com.un_bd.github.viewmodel.ReposViewModel
 
 @Composable
 fun ReposScreen(
-  user: String,
   reposViewModel: ReposViewModel = hiltViewModel(),
   onBack: () -> Unit = { }
 ) {
   Column {
-    TopAppBar(title = { Text(text = user) },
+    TopAppBar(title = { Text(text = reposViewModel.uiState.user) },
       navigationIcon = {
         IconButton(onClick = { onBack() }) {
           Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)

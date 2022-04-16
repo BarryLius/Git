@@ -102,8 +102,8 @@ fun NavigationScreen() {
       }
 
     ) {
-      it.arguments?.getString("user")?.let { user ->
-        ReposScreen(user = user) {
+      it.arguments?.getString("user")?.let {
+        ReposScreen {
           navController.popBackStack()
         }
       }
