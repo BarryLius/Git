@@ -1,10 +1,14 @@
 package com.un_bd.github.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.un_bd.github.BuildConfig
+import com.un_bd.github.MyApp
 import com.un_bd.github.api.GitHubService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,11 +30,15 @@ object NetworkModel {
 
   @Singleton
   @Provides
-  fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+  fun provideOkHttpClient(
+    httpLoggingInterceptor: HttpLoggingInterceptor,
+    @ApplicationContext context: Context
+  ): OkHttpClient {
     return OkHttpClient.Builder()
       .apply {
         if (BuildConfig.DEBUG) {
           addInterceptor(httpLoggingInterceptor)
+          addInterceptor(ChuckerInterceptor.Builder(context).build())
         }
       }
       .build()
